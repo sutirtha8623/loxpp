@@ -8,7 +8,9 @@
 #include "token.hpp"
 #include <vector>
 
-vector<Token> scan (std::string);
+namespace lox {
+    void run (std::string);
+    std::vector<Token> scan(std::string);
 
-
+}
 #endif //LOX___SCANNER_HPP
