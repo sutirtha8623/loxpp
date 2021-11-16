@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "scanner.hpp"
+#include "error.hpp"
 
 std::string readFileIntoString (std::string);
 void runFile (std::string);
@@ -32,8 +33,8 @@ void runFile (std::string path) {
 void runPrompt () {
     std::string s;
     while (true) {
-        getline(std::cin, s);
-        if (s == "") {
+        if (getline(std::cin, s)) {
+            std::cout << "\n";
             break;
         }
         lox::run(s);

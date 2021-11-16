@@ -2,8 +2,8 @@
 // Created by sutirtha8623 on 4/25/21.
 //
 
-#ifndef LOX___SCANNER_HPP
-#define LOX___SCANNER_HPP
+#ifndef LOXPP_SCANNER_HPP
+#define LOXPP_SCANNER_HPP
 
 #include "token.hpp"
 #include <vector>

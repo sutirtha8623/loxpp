@@ -2,8 +2,8 @@
 // Created by sutirtha8623 on 4/25/21.
 //
 
-#ifndef LOX___TOKEN_HPP
-#define LOX___TOKEN_HPP
+#ifndef LOXPP_TOKEN_HPP
+#define LOXPP_TOKEN_HPP
 
 #include <string>
 
