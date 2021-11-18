@@ -32,7 +32,7 @@ namespace lox {
         int line;
 
     public:
-        Token (TokenType t, std::string& s, int l) : type(t), lexeme(s), line(l){}
+        Token (TokenType t, std::string s, int l) : type(t), lexeme(s), line(l){}
 
         std::string toString();
     };

@@ -14,10 +14,18 @@ namespace lox {
         std::string source;
         std::vector<Token> tokens;
 
+        int start = 0;
+        int current = 0;
+        int line = 1;
+
     public:
         explicit Scanner(std::string& s) : source(s) {}
 
-        std::vector<Token> scanTokens ();
+        std::vector<Token>& scanTokens ();
+        void scanToken ();
+        bool isAtEnd ();
+        char advance ();
+        void addToken (TokenType);
     };
 
 }
