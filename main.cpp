@@ -7,6 +7,7 @@
 std::string readFileIntoString (std::string);
 void runFile (std::string);
 void runPrompt ();
+void run (std::string);
 
 int main (int argc, char** argv) {
     if (argc > 1)
@@ -27,7 +28,7 @@ std::string readFileIntoString (std::string fileName) {
 
 void runFile (std::string path) {
     std::string str = readFileIntoString(path);
-    lox::run(str);
+    run(str);
 }
 
 void runPrompt () {
@@ -37,7 +38,10 @@ void runPrompt () {
             std::cout << "\n";
             break;
         }
-        lox::run(s);
+        run(s);
     }
 }
 
+void run (std::string s) {
+
+}

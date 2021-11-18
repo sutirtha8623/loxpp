@@ -7,10 +7,18 @@
 
 #include "token.hpp"
 #include <vector>
+#include <string>
 
 namespace lox {
-    void run (std::string);
-    std::vector<Token> scan(std::string);
+    class Scanner {
+        std::string source;
+        std::vector<Token> tokens;
+
+    public:
+        explicit Scanner(std::string& s) : source(s) {}
+
+        std::vector<Token> scanTokens ();
+    };
 
 }
-#endif //LOX___SCANNER_HPP
+#endif //LOXPP_SCANNER_HPP

@@ -8,7 +8,7 @@
 
 namespace lox {
 
-    std::string Token::to_string() {
+    std::string Token::toString() {
         const static std::map<TokenType, std::string> enum_strings {
 
             {TokenType::LEFT_PAREN, "LEFT_PAREN"},
@@ -47,7 +47,7 @@ namespace lox {
             {TokenType::OR, "OR"},
             {TokenType::PRINT, "PRINT"},
             {TokenType::RETURN, "RETURN"},
-            {TokenType::SUPER, "THIS"},
+            {TokenType::SUPER, "SUPER"},
             {TokenType::THIS, "THIS"},
             {TokenType::TRUE, "TRUE"},
             {TokenType::VAR, "VAR"},

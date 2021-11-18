@@ -32,10 +32,10 @@ namespace lox {
         int line;
 
     public:
-        Token (TokenType t, std::string s, int l) : type(t), lexeme(s), line(l){}
+        Token (TokenType t, std::string& s, int l) : type(t), lexeme(s), line(l){}
 
-        std::string to_string();
+        std::string toString();
     };
 
 }
-#endif //LOX___TOKEN_HPP
+#endif //LOXPP_TOKEN_HPP
