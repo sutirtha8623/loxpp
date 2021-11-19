@@ -15,8 +15,13 @@ namespace lox {
         std::string message;
         bool hadError;
     public:
-        Error (int l, std::string w, std::string& m) : line(l), where(w), message(m) {}
-        Error (int l, std::string m) : line(l), where(""), message(m) {}
+        Error (int l, std::string w, std::string m) : line(l), where(w), message(m) {
+            hadError = true;
+        }
+        Error (int l, std::string m) : line(l), where(""), message(m) {
+            hadError = true;
+        }
+        ~Error () {}
 
         void setErrorState (bool b);
 

@@ -53,7 +53,7 @@ namespace lox {
             {TokenType::VAR, "VAR"},
             {TokenType::WHILE, "WHILE"},
 
-            {TokenType::END, "END"},
+            {TokenType::END, "END"}
         };
 
         auto it = enum_strings.find(type);
