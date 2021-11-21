@@ -30,11 +30,10 @@ namespace lox {
     class Token {
         TokenType type;
         std::string lexeme;
-        std::shared_ptr<void> literal;
         int line;
 
     public:
-        Token (TokenType t, std::string s, std::shared_ptr<void> lit ,int l) : type(t), lexeme(s), literal(lit) ,line(l){}
+        Token (TokenType t, std::string s, int l) : type(t), lexeme(s), line(l){}
         ~Token () {}
 
         std::string toString();

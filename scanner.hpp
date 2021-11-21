@@ -47,8 +47,7 @@ namespace lox {
         bool isAtEnd ();
         char advance ();
 
-        void addToken(TokenType);
-        void addToken (TokenType, std::shared_ptr<void>);
+        void addToken (TokenType);
     };
 
 }

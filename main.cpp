@@ -10,10 +10,10 @@ void runPrompt ();
 void run (std::string);
 
 int main (int argc, char** argv) {
-    if (argc > 1)
+    if (argc > 2)
         std::cout << "Usage: loxpp [script]\n";
-    else if (argc == 1) {
-        std::string inp (argv[0]);
+    else if (argc == 2) {
+        std::string inp (argv[1]);
         runFile(inp);
     } else
         runPrompt();
@@ -34,7 +34,8 @@ void runFile (std::string path) {
 void runPrompt () {
     std::string s;
     while (true) {
-        if (getline(std::cin, s)) {
+        std::cout << "> ";
+        if (!getline(std::cin, s)) {
             std::cout << "\n";
             break;
         }
@@ -43,5 +44,10 @@ void runPrompt () {
 }
 
 void run (std::string s) {
+    lox::Scanner scanner = lox::Scanner(s);
+    std::vector<lox::Token> tokens = scanner.scanTokens();
 
+    for (lox::Token token : tokens) {
+        std::cout << token.toString() << "\n";
+    }
 }

@@ -7,6 +7,7 @@
 #include "error.hpp"
 #include <vector>
 #include <memory>
+#include <iostream>
 
 namespace lox {
 
@@ -16,6 +17,7 @@ namespace lox {
             {"else", ELSE},
             {"false", FALSE},
             {"fun", FUN},
+            {"for", FOR},
             {"if", IF},
             {"nil", NIL},
             {"or", OR},
@@ -34,7 +36,7 @@ namespace lox {
             scanToken();
         }
 
-        this->tokens.push_back(Token(END, "", nullptr, this->line));
+        this->tokens.push_back(Token(END, "", this->line));
         return this->tokens;
     }
 
@@ -93,7 +95,8 @@ namespace lox {
                     identifier();
                 }
                 else {
-                    throw Error(this->line, "Unexpected character.");
+                    //throw Error(this->line, "Unexpected character.");
+                    std::cout << "Error";
                 }
         }
     }
@@ -101,7 +104,7 @@ namespace lox {
     void Scanner::identifier () {
         while (isAlphaNumeric(peek())) advance();
 
-        std::string val = this->source.substr(this->start, this->current - this->start + 1);
+        std::string val = this->source.substr(this->start, this->current - this->start);
 
         auto it = keywords.find(val);
         if (it == keywords.end()) addToken(IDENTIFIER);
@@ -118,8 +121,7 @@ namespace lox {
             while (isDigit(peek())) advance();
         }
 
-        std::string val = this->source.substr(this->start, this->current - this->start + 1);
-        addToken(NUMBER, static_cast<std::shared_ptr<void>>(&val));
+        addToken(NUMBER);
     }
 
     void Scanner::string () {
@@ -128,13 +130,13 @@ namespace lox {
             advance();
         }
         if (isAtEnd()) {
-            throw Error(this->line, "Unterminated string");
+            //throw Error(this->line, "Unterminated string");
+            return;
         }
 
         advance();
 
-        std::string val = this->source.substr(this->start + 1, this->current - this->start);
-        addToken(STRING, static_cast<std::shared_ptr<void>>(&val));
+        addToken(STRING);
     }
 
     bool Scanner::match (char expected) {
@@ -175,11 +177,8 @@ namespace lox {
         return this->source[this->current++];
     }
 
-    void Scanner::addToken(TokenType t) {
-        addToken(t, nullptr);
+    void Scanner::addToken (TokenType t) {
+        std::string text = this->source.substr(this->start, this->current - this->start);
+        this->tokens.push_back(Token(t, text,this->line));
     }
-    void Scanner::addToken (TokenType t, std::shared_ptr<void> literal) {
-        std::string text = this->source.substr(this->start, this->current - this->start + 1);
-        this->tokens.push_back(Token(t, text, literal, this->line));
-    }
-};
+}
