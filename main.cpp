@@ -50,4 +50,8 @@ void run (std::string s) {
     for (lox::Token token : tokens) {
         std::cout << token.toString() << "\n";
     }
+
+    if (scanner.errorList.size() != 0) {
+        scanner.reportErrors();
+    }
 }

@@ -6,6 +6,7 @@
 #define LOXPP_SCANNER_HPP
 
 #include "token.hpp"
+#include "error.hpp"
 #include <vector>
 #include <string>
 #include <memory>
@@ -21,6 +22,8 @@ namespace lox {
         int line;
 
         static std::map<std::string, TokenType> keywords;
+    public:
+        std::vector<Error> errorList;
 
     public:
         explicit Scanner(std::string& s) : source(s) {
@@ -48,6 +51,8 @@ namespace lox {
         char advance ();
 
         void addToken (TokenType);
+
+        void reportErrors();
     };
 
 }

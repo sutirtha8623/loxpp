@@ -7,7 +7,6 @@
 #include "error.hpp"
 #include <vector>
 #include <memory>
-#include <iostream>
 
 namespace lox {
 
@@ -95,8 +94,8 @@ namespace lox {
                     identifier();
                 }
                 else {
-                    //throw Error(this->line, "Unexpected character.");
-                    std::cout << "Error";
+                    errorList.push_back(Error(this->line, "Unexpected character."));
+                    break;
                 }
         }
     }
@@ -130,7 +129,7 @@ namespace lox {
             advance();
         }
         if (isAtEnd()) {
-            //throw Error(this->line, "Unterminated string");
+            errorList.push_back(Error(this->line, "Unterminated string."));
             return;
         }
 
@@ -180,5 +179,11 @@ namespace lox {
     void Scanner::addToken (TokenType t) {
         std::string text = this->source.substr(this->start, this->current - this->start);
         this->tokens.push_back(Token(t, text,this->line));
+    }
+
+    void Scanner::reportErrors() {
+        for (auto e : errorList) {
+            e.report();
+        }
     }
 }
