@@ -70,6 +70,16 @@ namespace lox {
                 if (match('/')) {
                     while (peek() != '\n' && !isAtEnd()) advance();
                 }
+                else if (match('*')) {
+                    while (peek() != '*' && peekNext() != '/') {
+                        advance();
+                        if (peek() == '\n') this->line++;
+                        else if (isAtEnd()) {
+                            errorList.push_back(Error(this->line, "Unterminated block comment"));
+                        }
+                    }
+                    advance(); advance(); //for * and /
+                }
                 else {
                     addToken(SLASH);
                 }
